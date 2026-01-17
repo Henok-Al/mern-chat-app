@@ -41,7 +41,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         console.error('Failed to fetch user:', error);
         localStorage.removeItem('token');
       })
-      .finally(() => {
+      .then(() => {
         setLoading(false);
       });
     } else {
