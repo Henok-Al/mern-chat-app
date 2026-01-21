@@ -22,15 +22,15 @@ const upload = multer({
         fileSize: 5 * 1024 * 1024 // 5MB limit
     },
     fileFilter: (req, file, cb) => {
-        // Allow images only
-        const allowedTypes = /jpeg|jpg|png|gif/;
+        // Allow images, videos, and documents
+        const allowedTypes = /jpeg|jpg|png|gif|mp4|mov|avi|pdf|doc|docx|txt/;
         const extname = allowedTypes.test(file.originalname.toLowerCase().match(/\.[^/.]+$/)?.[0] || '');
         const mimetype = allowedTypes.test(file.mimetype);
 
         if (extname && mimetype) {
             return cb(null, true);
         } else {
-            cb(new Error('Invalid file type. Only images are allowed.'));
+            cb(new Error('Invalid file type. Only images, videos, and documents are allowed.'));
         }
     }
 });
